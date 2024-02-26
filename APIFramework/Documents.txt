@@ -1,0 +1,75 @@
+How to configure API Framework with Jenkins
+
+Java -var Jenkins.war -httpPort=9090
+Localhost:9090
+Set up username password
+Setup new job click on New Item
+Select Freestyle project
+Enter an item name RestAPIFramework click ok and new job is created
+General scroll down click on Advanced to give path of  your project
+Select use custom workspace because project resides in your local machine
+Go to Project properties copy your project location and give it to Directory of custom workspace
+Scroll down select BUILD “Add build step” option
+Select invoke top level Maven Targets
+Type in Goals your Maven command that you give in intelligence j terminal to run code
+Same command we will paste it in Goals that is
+ test  verify -Dcucumber.options=“ -tags @AddPlace”
+This above command will get executed whenever the Jenkins JOB will run
+Save the Project
+Go to Jenkins main page and select build now
+Go to console output and see the logs
+To make your project parametrized like you want some tests to be executed for Regression you need to Jenkins Configure tab select
+This project is parametrized and then select Choice Parameters
+Input Name = tag
+Choice = Give tags like
+AddPlace
+DeletePlace
+Regression
+These are same tags that are written in feature files
+Save it and go to main page select configure again
+Scroll down and go to goals and there change command into
+test  verify -Dcucumber.options=“ -tags @“$tag”
+So that all the tags like AddPlace,DeletePlace and Regression will get started dynamically and when you are done with parameters option drop down will open showing tags like AddPlace,DeletePlace and Regression and you need to select any one option
+Save and go to main page the build option is changed into the Build with Parameters now and you can select any tag from the dropdown
+Select build with Parameters and after console output is finished
+Go back to project select workspace >Target
+Select cucumber html reports links> select overview features him link
+And it will show the reports for you in Jenkins
+Reports showing features,Tags,Steps etc
+
+........................................................................
+Follow this link to add project to the Repository
+https://docs.github.com/en/issues/planning-and-tracking-with-projects/managing-your-project/adding-your-project-to-a-repository
+
+........................................................................
+
+Project Description
+
+Pojo Pckage
+This package contains all classes we mapped our request using Serialization and get our response using Deserialization
+cucumber.Options
+This package contains Test Runner file to run the BDD driven cucumber based project
+Extent Reports
+This package contains aLL the Extent Reports and its listeners
+Features
+This paclage contains features files for BDD cucumber based project
+OAuth
+This package contains all the Auth based APIs
+Resources
+API Resources handle our API Resources
+Global properties handle the base URL
+TestCataBuild handle the payload that we are going to map using pojo classes
+Utils handle functions that we are using for our TDD and BDD based projects
+Step Definations
+This Package contains hooks and Stepdefinations
+TDD
+This package contains classes that will be TDD Based
+TestReport
+This package contains the TDD based Extent reports just need to open Test-Automation-Report in browser everytime the project is run
+testng.xml
+This is xml file need to run everytime for TDD based project so that the report is generated and also the project run is accompplished
+
+
+
+
+

@@ -1,0 +1,12 @@
+<suite name="Test Suite" verbose="1">
+    <listeners>
+        <listener class-name="ExtentReports.TestListener" />
+    </listeners>
+    <parameter name="browserType" value="chrome" />
+
+    <test name="Admin Tests">
+        <classes>
+            <class name="TDD.APIFramework"/>
+        </classes>
+    </test>
+</suite>
